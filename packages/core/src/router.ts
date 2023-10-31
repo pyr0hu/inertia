@@ -373,7 +373,7 @@ export class Router {
         }
 
         const pageResponse: Page = response.data
-        if (only.length && pageResponse.component === this.page.component) {
+        if (pageResponse.component === this.page.component) {
           pageResponse.props = { ...this.page.props, ...pageResponse.props }
         }
         preserveScroll = this.resolvePreserveOption(preserveScroll, pageResponse) as boolean
