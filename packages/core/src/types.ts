@@ -74,6 +74,7 @@ export type Visit = {
   errorBag: string | null
   forceFormData: boolean
   queryStringArrayFormat: 'indices' | 'brackets'
+  mergeIncomingProps: boolean
 }
 
 export type GlobalEventsMap = {
