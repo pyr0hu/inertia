@@ -272,6 +272,7 @@ export class Router {
       onSuccess = () => {},
       onError = () => {},
       queryStringArrayFormat = 'brackets',
+      mergeIncomingProps = false,
     }: VisitOptions = {},
   ): void {
     let url = typeof href === 'string' ? hrefToUrl(href) : href
@@ -298,6 +299,7 @@ export class Router {
       errorBag,
       forceFormData,
       queryStringArrayFormat,
+      mergeIncomingProps,
       cancelled: false,
       completed: false,
       interrupted: false,
@@ -374,7 +376,9 @@ export class Router {
 
         const pageResponse: Page = response.data
         if (pageResponse.component === this.page.component) {
-          pageResponse.props = { ...this.page.props, ...pageResponse.props }
+          if (only.length || mergeIncomingProps) {
+            pageResponse.props = { ...this.page.props, ...pageResponse.props }
+          }
         }
         preserveScroll = this.resolvePreserveOption(preserveScroll, pageResponse) as boolean
         preserveState = this.resolvePreserveOption(preserveState, pageResponse)
